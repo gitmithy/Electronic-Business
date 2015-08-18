@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="keywords" content="{$SEO['keyword']}">
+		<meta name="description" content="{$SEO['description']}">
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+	    <script language="javascript" type="text/javascript" src="js/jquery1.42.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+		<script language="JavaScript" type="text/javascript" src="js/jquery.cxscroll.min.js" ></script>
+
+	</head>
+	<body>
+		<!--<div class="top">
+			<a name="top"><img src="img/top.jpg" style="max-width: 100%; height: auto;"> </a>
+			
+		</div>-->
+	<div class="main" style="margin-top: 406px;">
+		<div class="nav" style="margin-top: 406px;">
+			<a><img src="img/nav.png" style="max-width: 100%; height: auto;" />  </a>
+			
+			
+		</div>
+		<div class="menu" style="position: fixed; right: 50px; top: 400px;" >
+			<ul>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#top">首页</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con1">会议动态</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con2">会议议题</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con3">邀请参会</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con4">与会嘉宾</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con5">附近风景</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#con6">视频欣赏</a></li>
+				<li style="width: 100px; height: 40px; text-align: center; font-size: 16px; margin-top: 5px;"><a href="#top">返回顶部</a></li>
+			</ul>
+			
+			
+		</div>
+		
+		<div class="toutiao">测试</div>
+		
+		<div class="con1">
+			<div class="con1-lft" style="float: left;display: inline-block;overflow: hidden;white-space: nowrap;">
+					<div class="focusBox">
+						<ul class="pic">
+								{pc:content action="lists" catid="725" order="id desc" thumb="1" moreinfo=""  num="4" }
+								{loop $data $n $r}							
+								<li style="display: block;"><a href="{$r[url]}" target="_blank" ><img src="{$r[thumb]}" width="570px" height="320px" /></a></li>
+
+								{/loop}
+								{/pc}								
+								
+								
+								
+						</ul>
+						<div class="txt-bg"></div>
+						<div class="txt">
+							<ul>
+								
+								{pc:content action="lists" catid="725" order="id desc" thumb="1" moreinfo=""  num="4" }
+
+								{loop $data $n $r}								
+								<li><a href="{$r[url]}">{$r[title]}</a></li>
+								{/loop}
+								{/pc}
+								
+							</ul>
+						</div>			
+						<ul class="num">
+							<li><a>1</a><span></span></li>
+							<li><a>2</a><span></span></li>
+							<li><a>3</a><span></span></li>
+							<li><a>4</a><span></span></li>
+							<li style="width: 36px;"><a>更多</a><span></span></li>
+						</ul>
+
+					<script type="text/javascript">
+						jQuery(".focusBox").slide({ titCell:".num li", mainCell:".pic",effect:"fold", autoPlay:true,trigger:"click",
+						startFun:function(i){
+						jQuery(".focusBox .txt li").eq(i).animate({"bottom":0}).siblings().animate({"bottom":-36});
+						}
+						});	
+					</script>
+				</div>
+	
+			</div>
+			<div class="con1-rht">
+				<div class="con1nav" style="padding: 0 5px; height: 24px;">
+					<a name="con1"  style="float: left;"><img src="img/con1nav.png" />  </a>
+					<span style="float: right;"><a><img src="img/more.png" />  </a>  </span>
+				</div>
+				<div class="con1-rht-con">
+					<ul style="width: 336px; height: 75px; margin-top: 10px; margin-left: auto; margin-right: auto; margin-bottom: 4px;">
+						
+					    {php $where = " status=99 AND catid=725 AND posids=1";}
+						{pc:content action="lists" catid="725"  where="$where" order="id" thumb="" moreinfo=""  num="1" }
+						{loop $data $n $r}						
+						<li style="font-size: 17px; text-align: center;"><a><b>{$r[title]} </b></a>  </li>
+						<li style="text-indent: 2em; margin-top: 15px;">{str_cut($r[description],120,'...')}<a href="{$r[url]}">[详细]</a></li>
+						{/loop}
+						{/pc}						
+					</ul>
+					<ul style="width: 350px; height: 200px; margin-left: auto; margin-right: auto; text-align: center; font-size: 15px; line-height: 31px;">
+						
+						{php $where = " status=99 AND catid=725 AND posids<>1";}
+					    {pc:content action="lists" catid="725"  where="$where" order="inputtime DESC" thumb="" moreinfo=""  num="7" }
+					    {loop $data $n $r}						
+						<li><b>·</b><a href="{$r[url]}">{str_cut($r[title],60,'...')}</a></li>
+						{/loop}
+						{/pc}
+					</ul>	
+				</div>	
+			</div>	
+		</div>
+		<div class="con2">
+			<a name="con2"><img src="img/con2.png" /> </a>
+			
+			
+		</div>
+		<div class="con3" style="position: relative;">
+				<a name="con3">&nbsp;</a>
+				<!--费用说明-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 180px; top: 80px;"><a href="http://hao123.com"></a></div>
+				<!--交通提示-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 50px; top: 140px;"><a href="http://baidu.com"></a></div>
+				<!--参会回执表-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 320px; top: 140px;"><a href="http://baidu.com"></a></div>
+				<!--行程安排-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 50px; top: 280px;"><a href="http://baidu.com"></a></div>
+				<!--在线报名-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 320px; top: 280px;"><a href="http://baidu.com"></a></div>
+				<!--注意事项-->
+				<div style="position: absolute; width: 105px; height: 105px;  left: 180px; top: 360px;"><a href="http://baidu.com"></a></div>
+			
+			
+			
+			
+		</div>
+		<div class="con4">
+			<div class="con4-nav">
+				<a name="con4"><img src="img/con4nav.png" style="display: block; margin: 0 auto;" />	</a>	
+			</div>
+			<div class="con4-con">
+				<ul style="width: 960px; height: 500px; margin: 0 auto; margin-top: 15px;">
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>					
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>				
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>					
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>					
+					<li style="width: 240px; height: 250px; float: left;">
+						<a><img src="img/photo.png"></a>	
+						<p style="text-align: center;">王琪延</p>
+						<p style="text-align: center;">中国人民大学教授</p>
+						<p style="text-align: center;">中国休闲经济研究中心主任</p>
+					</li>						
+				</ul>	
+			</div>	
+		</div>
+		<div class="con5">
+			<div class="con5nav" style="margin-bottom: 20px;">
+				<a name="con5"><img src="img/con5nav.png" style="display: block; margin: 0 auto;" /> </a>
+			</div>
+			<div class="txMovie" style="margin:0 auto">
+				 <ul class="focus_pic" id="focus_pic_list">
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+					<li><a href="http://www.SuperSlide2.com" target="_blank"><img src="img/wd.jpg" /></a></li>
+				</ul>
+			
+				<div class="focus_nav">
+					<ul id="focus_smaillPic_list">
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+						<li><a><img src="img/wd.jpg"><span class="cover"></span></a><b>▲</b></li>
+					</ul>
+					<a href="javascript:;" title="上一个" class="navPrev">上一个</a>
+					<a href="javascript:;" title="下一个" class="navNext">下一个</a>
+				</div>
+			
+				<div class="focus_text">
+					<ul id="focus_content_list">
+						<li>
+							<h2><a href="#">夺命金</a></h2>
+							<p class="sub_tit">勇夺第49届金马奖三项大奖</p>
+							<div class="focus_info">
+							<p class="c_txt4">导演：<a href="#">杜琪峰</a> </p>
+							<p class="c_txt4">主演：<a href="#">刘青云</a> <a href="#">何韵诗</a> <a href="#">任贤齐</a> <a href="#">胡杏儿</a> <a href="#">卢海鹏</a> </p>
+							<p class="c_txt4 mod_desc">《夺命金》借三个背景各异的角色：银行职员Teresa（何韵诗饰）、黑帮中人三脚豹（刘青云饰）及警队督察张正方（任...</p>
+							</div>
+
+						</li>
+					<li>
+						<h2><a href="#">逃离德黑兰</a></h2>
+						<p class="sub_tit">伊朗人质危机</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">本.阿弗莱克</a> </p>
+						<p class="c_txt4">主演：<a href="#">布莱恩.科兰斯顿</a> <a href="#">本.阿弗莱克</a> <a href="#">凯尔.钱德勒</a> </p>
+						<p class="c_txt4 mod_desc">《逃离德黑兰》根据一篇为名“中情局如何依靠一部假冒的电影将美国人带离德黑兰”的杂志文章改编而成，片名“Argo”来...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">我十一</a></h2>
+						<p class="sub_tit">60年代少年的童年故事</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">王小帅</a> </p>
+						<p class="c_txt4">主演：<a href="#">闫妮</a> <a href="#">乔任梁</a> <a href="#">刘文卿</a> </p>
+						<p class="c_txt4 mod_desc">讲述1974年-1976年之间发生的一段青春往事，是王小帅本人和同时代人的刻骨记忆，像《青红》一样是发生在一个...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">黑衣女人</a></h2>
+						<p class="sub_tit">被诅咒的村庄</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">James Watkins</a> </p>
+						<p class="c_txt4">主演：<a href="#">丹尼尔.雷德克里夫</a> <a href="#">塞伦.希德</a> <a href="#">珍妮.麦克蒂尔</a> </p>
+						<p class="c_txt4 mod_desc">丹尼尔·雷德克里夫在影片中饰演一名年轻的律师，他来到一个偏远的村庄，处理一桩客户遗嘱的案件，但是来到这里他逐渐...</p>
+						</div>
+
+					</li>
+			
+					<li>
+						<h2><a href="#">《少年派》幕后特辑</a></h2>
+						<p class="sub_tit">李安解读少年派</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">李安</a> </p>
+						<p class="c_txt4">主演：<a href="#">苏拉.沙玛</a> <a href="#">拉菲.斯波</a> <a href="#">伊尔凡.可汗</a> </p>
+						<p class="c_txt4 mod_desc">故事开始于蒙特娄，也结束于蒙特娄。一名在找寻灵感的作家（拉菲·斯波 Rafe Spall 饰）无意间得知派·帕...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">神枪手</a></h2>
+						<p class="sub_tit">盼拼命三郎黄晓明早日归来</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">林超贤</a> </p>
+						<p class="c_txt4">主演：<a href="#">任贤齐</a> <a href="#">黄晓明</a> <a href="#">陈冠希</a> <a href="#">叶璇</a> <a href="#">刘浩龙</a> </p>
+						<p class="c_txt4 mod_desc">凌靖，一个天生的猎杀者。他百发百中，每发子弹也绝无虚发，最难打的位置对他来说也是轻而易举，击倒对手准确无误，曾连续...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">人在囧途</a></h2>
+						<p class="sub_tit">徐峥小旅馆惨被“捉奸”</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">叶伟民 </a> </p>
+						<p class="c_txt4">主演：<a href="#">徐峥</a> <a href="#">王宝强</a> <a href="#">李曼</a> <a href="#">姚文雪</a> <a href="#">李小璐</a> </p>
+						<p class="c_txt4 mod_desc">春节将近，玩具集团老板李成功（徐峥饰）回长沙过年，同时在情人嫚妮（李曼饰）的逼迫下，准备过年后跟老婆离婚。结果，在...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">摩尔庄园2之海妖宝藏</a></h2>
+						<p class="sub_tit">黄渤张杰倾情献声</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">刘可欣</a> </p>
+						<p class="c_txt4">主演：<a href="#">丝尔特</a> <a href="#">么么公主</a> <a href="#">瑞琪</a> <a href="#">库拉</a> <a href="#">尼克</a> </p>
+						<p class="c_txt4 mod_desc">在充满传奇的摩尔大陆上，一群热爱和平的小鼹鼠创造了自己灿烂的文明，他们就是摩尔族。这些小摩尔与很多其他的...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">在劫难逃</a></h2>
+						<p class="sub_tit">泰勒洛特纳新作</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">约翰.辛格顿</a> </p>
+						<p class="c_txt4">主演：<a href="#">泰勒.洛特纳</a> <a href="#">莉莉.柯林斯</a> <a href="#">阿尔弗雷德.莫里纳</a> </p>
+						<p class="c_txt4 mod_desc">《绑架》的故事创意来自Gotham集团的杰瑞米.贝尔（Jeremy Bell），讲述的是一个年轻人意外在一家寻...</p>
+						</div>
+
+					</li>
+			
+					<li>
+						<h2><a href="#">哭笑不得</a></h2>
+						<p class="sub_tit">萧蔷柳岩美胸大PK</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">罗斌</a> </p>
+						<p class="c_txt4">主演：<a href="#">王喜</a> <a href="#">萧蔷</a> <a href="#">柳岩</a> <a href="#">李耕</a> <a href="#">刘波</a> </p>
+						<p class="c_txt4 mod_desc">表情丰富的郑满堂（王喜 饰）利用自身特点，成立了情感陪护公司，专门为那些需要带动情绪的场合提供哭和笑的服务。美...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">青魇</a></h2>
+						<p class="sub_tit">港式惊悚回归</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">邱礼涛</a> </p>
+						<p class="c_txt4">主演：<a href="#">薛凯琪</a> <a href="#">黄轩</a> <a href="#">周楚楚</a> </p>
+						<p class="c_txt4 mod_desc">郝冬（黄轩 饰）在收听午夜电台节目时，谈到了自己失眠的痛苦经历。郝冬的女友——电台DJ依凡（薛凯琪 饰）开始对...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">画皮2</a></h2>
+						<p class="sub_tit">陈坤周迅再续前缘</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">乌尔善</a> </p>
+						<p class="c_txt4">主演：<a href="#">周迅</a> <a href="#"> 赵薇</a> <a href="#">陈坤</a> <a href="#">冯绍峰</a> <a href="#">杨幂</a> </p>
+						<p class="c_txt4 mod_desc">在北冥以北的幽山之颠，有一座寒冰地狱，据说这是囚禁妖魔的地方，山顶的冰雪万年不化。这里，除了鸟雀，没有生灵来过...</p>
+						</div>
+
+					</li>
+					<li>
+						<h2><a href="#">暮光之城2：新月</a></h2>
+						<p class="sub_tit">贝拉身陷三角恋</p>
+						<div class="focus_info">
+						<p class="c_txt4">导演：<a href="#">克里斯.韦兹 </a> </p>
+						<p class="c_txt4">主演：<a href="#">克里斯汀.斯图尔特</a> <a href="#">罗伯特.帕丁森</a> </p>
+						<p class="c_txt4 mod_desc">爱德华担心贝拉受到吸血鬼世界的伤害，骗她说不再爱她并离开了福克斯小镇。情绪低落的贝拉转而向好朋友雅各布&amp;...</p>
+						</div>
+
+					</li>
+					</ul>
+				</div>
+			
+			</div>			
+			<script type="text/javascript">
+				//大图和文字切换
+				jQuery(".txMovie").slide({ titCell:".focus_nav li", mainCell:".focus_pic", targetCell:".focus_text li", autoPlay:true,delayTime:100,startFun:function(i){
+						//控制小图自动翻页
+						if(i==0){ jQuery(".txMovie .navPrev").click() } else if( i%11==0 ){ jQuery(".txMovie .navNext").click()}
+					}
+				});
+				//小图滚动
+				jQuery(".txMovie").slide({ mainCell:".focus_nav ul",prevCell:".navPrev",nextCell:".navNext",effect:"left",vis:11,scroll:11,delayTime:0,autoPage:true,pnLoop:false});
+			</script>			
+			
+			
+			
+		</div>
+		<div class="con6">
+			<div class="con6-nav" style="margin: 0 auto;">
+				<a name="con6"><img src="img/con6nav.png" style="display: block; margin: 0 auto;" /> </a>
+			</div>
+			<div class="con6-con">
+				<ul style="width: 960px; height: 170px; margin: 0 auto; margin-top: 16px;">
+					<li style="width: 240px; float: left;">
+						<a><img src="img/video.png"/> </a>
+						<p style="text-align: center;">奔跑的电商 </p>
+					</li>
+					<li style="width: 240px; float: left;">
+						<a><img src="img/video.png"/> </a>
+						<p style="text-align: center;">奔跑的电商 </p>
+					</li>					
+					<li style="width: 240px; float: left;">
+						<a><img src="img/video.png"/> </a>
+						<p style="text-align: center;">奔跑的电商 </p>
+					</li>					
+					<li style="width: 240px; float: left;">
+						<a><img src="img/video.png"/> </a>
+						<p style="text-align: center;">奔跑的电商 </p>
+					</li>					
+				</ul>
+				<div class="adSlide1">
+					<!--<div class="hd"><ul></ul></div>-->
+					<div class="bd">
+						<ul>
+							<li><a href="#"><img src="img/banner.png"   width="999px" height="81px" /></a></li>
+							<li><a href="#"><img src="img/banner.png"   width="999px" height="81px" /></a></li>
+						</ul>
+					</div>
+		
+					<script type="text/javascript">jQuery(".adSlide1").slide({ titCell:".hd ul", mainCell:".bd ul",delayTime:2000,interTime:5000,autoPlay:true,effect:"top",autoPage:true });</script>			
+				</div>				
+			<!--<div>
+				<a><img src="img/banner.png" /> </a>
+			
+			
+			</div>	-->
+				
+			</div>
+		
+		</div>
+
+		<div class="bottom">
+			<div class="bottom-nav">
+				<a name="top"><img src="img/con7nav.png" style="display: block; margin: 0 auto;" /> </a>
+			</div>	
+			<div class="bottom-con" style="margin-top: 20px;">
+				<ul style="width: 950px; height: 600px; margin: 0 auto;">
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad1.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad2.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad3.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad4.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad5.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad6.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad7.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad8.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad9.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad10.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad11.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad12.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad13.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad14.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad15.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad16.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad17.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad18.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad19.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad20.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad21.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad22.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad23.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad24.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad25.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad26.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad27.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad28.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad29.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad30.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad31.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad32.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad33.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad34.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad35.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad36.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad37.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad38.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad39.png" />  </a>   </li>
+					<li style="float: left; width: 190px; height: 75px;"><a><img src="img/ad40.png" />  </a>   </li>
+
+
+
+
+				</ul>
+			</div>
+		</div
+</div>
+	</body>
+</html>
